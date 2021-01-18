@@ -12,6 +12,10 @@ If you don't have conda on your system, please follow the installtion insturctio
 
 This command creates the conda environment for all the neccessary dependencies: `conda env create --file conda-environment.yml`
 
+### Starting the environment
+
+The imported environment can be activate with the command `conda activate BrainDead `
+
 
 ## Command helps
 
