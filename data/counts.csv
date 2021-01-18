@@ -1,0 +1,3 @@
+id,AGA_any,AGA_intra,AGA_dimer,AGA_free,GC_any,GC_intra,GC_dimer,GC_free,GGG_any,GGG_intra,GGG_dimer,GGG_free
+seq1,1,1,1,1,1,0,0,0,0,0,0,0
+seq2,1,1,1,1,1,0,0,0,1,0,0,0
