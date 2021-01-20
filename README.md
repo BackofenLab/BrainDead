@@ -58,7 +58,7 @@ optional arguments:
                         homo-duplex RRIs u - unpaired in both in (s) and (h)
 ```
 
-### Fit and predict ML 
+### Fit and predict ML model with `fit_predict.py`
 
 ```
 usage: fit_predict.py [-h] --features-train FEATURES_TRAIN
