@@ -2,7 +2,7 @@
 
 ## Setup
 
-The recommended way for runnign BrainDead locally is via Conda.
+The recommended way for running BrainDead locally is via Conda.
 
 ### Installing miniconda
 
@@ -14,7 +14,9 @@ This command creates the conda environment for all the neccessary dependencies: 
 
 ### Starting the environment
 
-The imported environment can be activate with the command `conda activate BrainDead `
+The imported environment can be activate with the command `conda activate BrainDead `.
+
+Afterwards you should be able to call BrainDead's scripts (see below), e.g. running the [example calls](#sample-calls-on-test-data).
 
 
 ## Command helps
