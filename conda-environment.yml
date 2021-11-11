@@ -6,7 +6,7 @@ channels:
   - bioconda
 dependencies:
   - viennarna=2.4.18
-  - intarna=2.4.1
+  - intarna
   - biopython
   - pandas
   - scikit-learn
