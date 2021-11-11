@@ -13,7 +13,7 @@ def find_kmer_hits(sequence, kmer):
     return [m.start() for m in re.finditer('(?='+kmer+')', sequence)] # re with look-ahead for overlaps
 
 def call_command (cmd):
-    p = subprocess.Popen(cmd,shell=True,stdin=None, stdout=PIPE)
+    p = subprocess.Popen(cmd,shell=True,stdin=None, stdout=PIPE, stderr=PIPE)
     (result, error) = p.communicate()
     if error:
         raise RuntimeError("Error in calling cmd or perl script\ncmd:{}\nstdout:{}\nstderr:{}".format(cmd, result, error))
