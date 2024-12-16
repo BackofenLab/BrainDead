@@ -2,22 +2,60 @@
 
 ## Setup
 
+To install and run BrainDead, you should use a commandline interface like `bash`.
+
+### (1) Downloading BrainDead script files from Github
+
+First, go to a folder where you want to "install" BrainDead, i.e. downloading the script files listed in this github repository. 
+
+```sh
+# download all files from 
+wget https://github.com/BackofenLab/BrainDead/archive/refs/heads/main.zip
+# uncompress the archive (might need an additional installation of "unzip")
+unzip main.zip
+# enter the unpacked and created folder
+cd BrainDead-main
+```
+
+Afterwards, you find in
+
+- `src` the script files (see below for usage)
+- `data` the data files used for training the models etc.
+
 The recommended way for running BrainDead locally is via Conda.
 
-### Installing miniconda
+### (2) Installing miniconda (if not already done)
 
-If you don't have conda on your system, please follow the installtion insturction for the minimal conda setup here: https://docs.conda.io/en/latest/miniconda.html
+If you don't have conda on your system (check if `conda --version` gives any output or an error message), please follow the installtion instruction for the minimal conda setup available via the following link.
 
-### Importing the dependencies
+- [miniconda installation](https://docs.conda.io/en/latest/miniconda.html)
 
-This command creates the conda environment for all the neccessary dependencies: `conda env create --file conda-environment.yml`
+`conda` is a commandline tool to simplify the installation and local management of tools and their dependencies in linux-based systems.
 
-### Starting the environment
+### (3) Importing the dependencies via conda
 
-The imported environment can be activate with the command `conda activate BrainDead `.
+Next, we want to install all files and tools needed to run BrainDead via conda.
+To this end, we will create a "conda environment", i.e. kind of a folder that contains all tools not part of this github repository.
+
+The needed files and tools are listed in the `conda-environment.yml` file within the `BrainDead-main` folder extracted in step (1).
+
+The following command creates the environment and imports BrainDead's dependencies.
+
+```sh
+conda env create --file conda-environment.yml
+```
+
+### (4) Starting the conda environment
+
+The created environment can be activate with the following command 
+
+```sh
+conda activate BrainDead
+```
 
 Afterwards you should be able to call BrainDead's scripts (see below), e.g. running the [example calls](#sample-calls-on-test-data).
 
+*Note: the script files are located in the `src` subdirectory!`
 
 ## Command helps
 
