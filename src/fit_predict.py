@@ -91,7 +91,7 @@ def fit_dfs_trains(df_features, df_labels, scikit_model, top_features=None, vali
     X = df_selected_features.values
     #print("X", X)
     #print("Y", Y)
-    n_splits = 3
+    n_splits = 2
     rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=10, random_state=2222)
     #skf = StratifiedKFold(n_splits=3, random_state=None, shuffle=True)
     arr_PRFS = list()#numpy.array()
@@ -109,7 +109,7 @@ def fit_dfs_trains(df_features, df_labels, scikit_model, top_features=None, vali
     columns=["Precision","Recall","F1"], index=['metric','std']).round(3)
 
     print("10-rep {}-fold CV:".format(n_splits))
-    print(df_metrics.to_csv(sep=','))
+    print(df_metrics)
     
     scikit_model.fit(X, y)
     print("Training score: {0:.3f}".format(scikit_model.score(X, y)))
@@ -167,13 +167,13 @@ if __name__ == '__main__':
             model = pickle.load(inmodel)
     else:
         if args.model_choice == 'SVM-rbf':
-            model = svm.SVC(kernel='rbf', gamma='scale', probability=True)
+            model = svm.SVC(kernel='rbf', gamma='scale', probability=True, class_weight="balanced")
         if args.model_choice == 'SVM-linear':
-            model = svm.SVC(kernel='linear', gamma='scale', probability=True)
+            model = svm.SVC(kernel='linear', gamma='scale', probability=True, class_weight="balanced")
         elif args.model_choice == 'Logistic-liblinear':
-            model = LogisticRegression(solver='liblinear')    
+            model = LogisticRegression(solver='liblinear', class_weight="balanced")    
         elif args.model_choice == 'Logistic-lbfgs':
-            model = LogisticRegression(solver='lbfgs')    
+            model = LogisticRegression(solver='lbfgs', class_weight="balanced")    
 
         if args.standardize_scaling:
             # build pipe: first standardize by substracting mean and dividing std
@@ -200,8 +200,11 @@ if __name__ == '__main__':
         # with open(args.out_predict_labels, 'w') as outlabels:
         #     outlabels.write('predicted_class,prob_{},prob_{}\n'.format(model.classes_[0],model.classes_[1]))
         #     y_predict.tofile(outlabels,sep="\n")
-        pd.DataFrame(stacked_arr, index=df_features_predict.index).to_csv(args.out_predict_labels, index=True,
-        header=['predicted_class','prob_{}'.format(model.classes_[0]),'prob_{}'.format(model.classes_[1])],float_format='%.2F')
+        df_out_predict = pd.DataFrame(stacked_arr, index=df_features_predict.index)
+        df_out_predict.sort_values(by=[df_out_predict.columns[1],df_out_predict.columns[2]], ascending=False, inplace=True)
+        df_out_predict['rank'] = df_out_predict.iloc[:,2].rank(method="first",ascending=False)
+        df_out_predict.to_csv(args.out_predict_labels, index=True,
+        header=['predicted_class','prob_{}'.format(model.classes_[0]),'prob_{}'.format(model.classes_[1]),'rank'],float_format='%.3F')
 
     if args.save_model is True:
         with open(args.out_model, 'wb') as outf:
