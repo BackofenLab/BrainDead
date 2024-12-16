@@ -53,9 +53,12 @@ The created environment can be activate with the following command
 conda activate BrainDead
 ```
 
-Afterwards you should be able to call BrainDead's scripts (see below), e.g. running the [example calls](#sample-calls-on-test-data).
+Afterwards you should be able to call BrainDead's scripts (see below).
 
 *Note: the script files are located in the `src` subdirectory!`
+
+At the end of the page, you find the [example calls](#sample-calls-on-test-data).
+
 
 ## Command helps
 
