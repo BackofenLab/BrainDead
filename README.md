@@ -168,17 +168,19 @@ optional arguments:
 ```
 python src/generate_kmer_features.py --kmers "AGA,GC,GGG" --fasta data/test.fa --out-csv data/counts.csv
 ```
-2. Training and saving the ML model:
+2. Training and saving the ML model (here an `SVM-rbf` model):
 ```
-$ python src/fit_predict.py --features-train data/190411-mTLR7-features.csv  --labels-train data/190411-mTLR7-labels.csv --features-train-header 0  --save-model --out-model data/190411-mTLR7.pkl
+$ python src/fit_predict.py --model-choice 'SVM-rbf' --features-train data/190411-mTLR7-features.csv  --labels-train data/190411-mTLR7-labels.csv --features-train-header 0  --save-model --out-model data/190411-mTLR7.pkl
 ```
-3. Training and predicting:
-```
-$ python src/fit_predict.py --features-train data/190411-mTLR7-features.csv  --labels-train data/190411-mTLR7-labels.csv --features-train-header 0  --save-model --out-model data/190411-mTLR7.pkl --predict --features-predict data/190411-mTLR7-features.csv --features-predict-header 0 --out-predict-labels data/predict.cvs
-```
-4. Predicting from the saved model:
+3. Predicting from the saved model:
 ```
 $ python src/fit_predict.py --predict --features-predict data/190411-mTLR7-features.csv --features-predict-header 0 --out-predict-labels predict.cvs --load-model data/190411-mTLR7.pkl 
+```
+Alternatively:
+
+2+3. Training and predicting in one step:
+```
+$ python src/fit_predict.py --features-train data/190411-mTLR7-features.csv  --labels-train data/190411-mTLR7-labels.csv --features-train-header 0  --save-model --out-model data/190411-mTLR7.pkl --predict --features-predict data/190411-mTLR7-features.csv --features-predict-header 0 --out-predict-labels data/predict.cvs
 ```
 
 
