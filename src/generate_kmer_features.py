@@ -21,7 +21,7 @@ def call_command (cmd):
     return cs_array
 
 def get_subopt_intarna_strs(sequence, minE_subopt, minE_intarna):
-    cmd_subopt = "echo \"{}\" | RNAsubopt -e 100 | perl {}/RNAsubopt-minEperPos.pl".format(sequence,BINDIR)
+    cmd_subopt = "echo \"{}\" | RNAsubopt -e 10 | perl {}/RNAsubopt-minEperPos.pl".format(sequence,BINDIR)
     csstr_subopt = call_command(cmd_subopt)
     assert (1 == len([l for l in csstr_subopt.split('\n')])) # 1 line expected
     arr_subopt = csstr_subopt.split(';')[1:] # First entry is always empty!
